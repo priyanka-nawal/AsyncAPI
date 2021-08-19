@@ -1,0 +1,54 @@
+asyncapi: "2.1.0"
+info:
+  version: "8"
+  title: "JMSChannel"
+  x-channel-name: "/Channels/JMSChannel"
+channels:
+  Subject.BookData:
+    subscribe:
+      operationId: "Channels_JMSChannel_BookDataDestination"
+      message:
+        $ref: "#/components/messages/BookDataEvent"
+      x-dest-properties:
+        AckMode: "23"
+        IncludeEventType: "ALWAYS"
+        serializer-deserializer-class: "com.tibco.cep.driver.jms.serializer.BytesMessageSerializer"
+        Priority: "4"
+        DeliveryMode: "2"
+        Queue: "true"
+        TTL: "0"
+        Name: "Subject.BookData"
+        IsJSONPayload: "false"
+servers:
+  default:
+    url: "tcp://localhost:7222"
+    protocol: "JMS"
+    x-sharedResource-properties:
+      useSsl: "false"
+      UseXACF: "false"
+      UseSharedJndiConfig: "false"
+      autoGenClientID: true
+      UseJNDI: "false"
+      ProviderURL: "tcp://localhost:7222"
+      NamingURL: "tibjmsnaming://localhost:7222"
+      NamingInitialContextFactory: "com.tibco.tibjms.naming.TibjmsInitialContextFactory"
+      TopicFactoryName: "TopicConnectionFactory"
+      QueueFactoryName: "QueueConnectionFactory"
+      NamingPrincipal: "TopicConnectionFactory"
+      sharedResourceName: "JMSTransport"
+components:
+  schemas:
+    BookDataEvent:
+      type: "object"
+      properties:
+        BookTitle:
+          type: "string"
+        BookAuthor:
+          type: "string"
+        BookPrice:
+          type: "integer"
+          format: "int32"
+  messages:
+    BookDataEvent:
+      payload:
+        $ref: "#/components/schemas/BookDataEvent"
