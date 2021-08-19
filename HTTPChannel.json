@@ -1,0 +1,166 @@
+{
+  "asyncapi" : "2.1.0",
+  "info" : {
+    "version" : "9",
+    "title" : "HTTPChannel",
+    "x-channel-name" : "/Channels/HTTP",
+    "x-channel-properties" : {
+      "be.http.maxKeepAliveRequests" : "-1",
+      "be.http.maxSavePostSize" : "4096",
+      "be.http.debugLogPattern" : "%{yyyy MMM dd HH:mm:ss.SSS 'GMT'X}t %A %I [%m] '%U' [%s] %bbytes %Dms",
+      "be.http.ssl_server_useServerCipherOrder" : "false",
+      "be.http.debugLogRenameOnRotate" : "true",
+      "be.http.maxSpareThreads" : "50",
+      "be.http.maxPostSize" : "2097152",
+      "be.http.serverHeader" : "Apache-Coyote/1.1",
+      "be.http.maxHttpHeaderSize" : "4096",
+      "be.http.connectorInstances" : "1",
+      "be.http.ssl_server_enabledprotocols" : "TLSv1.1,TLSv1.2,TLSv1.3",
+      "be.http.debug" : "false",
+      "be.http.compressableMimeType" : "text/html,text/xml,text/plain",
+      "be.http.compression" : "off",
+      "be.http.sessionTimeout" : "1800",
+      "be.http.ssl_server_ciphers" : "TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_DSS_WITH_AES_128_CBC_SHA,TLS_DHE_DSS_WITH_AES_128_CBC_SHA256,TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DHE_DSS_WITH_AES_256_CBC_SHA,TLS_DHE_DSS_WITH_AES_256_CBC_SHA256,TLS_DHE_DSS_WITH_AES_256_GCM_SHA384",
+      "be.http.connectionLinger" : "-1",
+      "be.http.debugLogFilePattern" : ".yyyy-MM-dd",
+      "be.http.acceptCount" : "-1",
+      "be.http.minSpareThreads" : "4",
+      "be.http.connectionTimeout" : "60000",
+      "be.http.maxProcessors" : "-1",
+      "be.http.enableDNSLookups" : "false",
+      "be.http.tcpNoDelay" : "true",
+      "be.http.debugLogMaxDays" : "-1",
+      "be.http.debugLogRotatable" : "true",
+      "be.http.connectorType" : "NIO",
+      "be.http.socketBufferSize" : "9000",
+      "be.http.useBodyEncodingForURI" : "false"
+    }
+  },
+  "channels" : {
+    "/Channels/HTTP/PostEmpl" : {
+      "subscribe" : {
+        "operationId" : "Channels_HTTP_PostEmpl",
+        "message" : {
+          "$ref" : "#/components/messages/PostEmpl"
+        },
+        "x-dest-properties" : {
+          "be.http.jsonPayload" : "false",
+          "be.http.IncludeEventType" : "ALWAYS",
+          "serializer-deserializer-class" : "com.tibco.cep.driver.http.serializer.RESTMessageSerializer",
+          "be.http.type" : "DEFAULT"
+        }
+      }
+    },
+    "/Channels/HTTP/GetEmplInfo" : {
+      "subscribe" : {
+        "operationId" : "Channels_HTTP_GetEmplInfo",
+        "message" : {
+          "$ref" : "#/components/messages/GetEmplInfo"
+        },
+        "x-dest-properties" : {
+          "be.http.jsonPayload" : "false",
+          "be.http.IncludeEventType" : "ALWAYS",
+          "serializer-deserializer-class" : "com.tibco.cep.driver.http.serializer.RESTMessageSerializer",
+          "be.http.type" : "DEFAULT"
+        }
+      }
+    }
+  },
+  "servers" : {
+    "default" : {
+      "url" : "http://localhost:8110",
+      "protocol" : "HTTP",
+      "x-sharedResource-properties" : {
+        "host" : "localhost",
+        "port" : "8110",
+        "useSsl" : "false",
+        "address" : "http://localhost:8110",
+        "sharedResourceName" : "HTTPConnection"
+      },
+      "x-config-properties" : {
+        "be.http.maxKeepAliveRequests" : "-1",
+        "be.http.maxSavePostSize" : "4096",
+        "be.http.debugLogPattern" : "%{yyyy MMM dd HH:mm:ss.SSS 'GMT'X}t %A %I [%m] '%U' [%s] %bbytes %Dms",
+        "be.http.ssl_server_useServerCipherOrder" : "false",
+        "be.http.debugLogRenameOnRotate" : "true",
+        "be.http.maxSpareThreads" : "50",
+        "be.http.maxPostSize" : "2097152",
+        "be.http.serverHeader" : "Apache-Coyote/1.1",
+        "be.http.maxHttpHeaderSize" : "4096",
+        "be.http.connectorInstances" : "1",
+        "be.http.ssl_server_enabledprotocols" : "TLSv1.1,TLSv1.2,TLSv1.3",
+        "be.http.debug" : "false",
+        "be.http.compressableMimeType" : "text/html,text/xml,text/plain",
+        "be.http.compression" : "off",
+        "be.http.sessionTimeout" : "1800",
+        "be.http.ssl_server_ciphers" : "TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_DSS_WITH_AES_128_CBC_SHA,TLS_DHE_DSS_WITH_AES_128_CBC_SHA256,TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DHE_DSS_WITH_AES_256_CBC_SHA,TLS_DHE_DSS_WITH_AES_256_CBC_SHA256,TLS_DHE_DSS_WITH_AES_256_GCM_SHA384",
+        "be.http.connectionLinger" : "-1",
+        "be.http.debugLogFilePattern" : ".yyyy-MM-dd",
+        "be.http.acceptCount" : "-1",
+        "be.http.minSpareThreads" : "4",
+        "be.http.connectionTimeout" : "60000",
+        "be.http.maxProcessors" : "-1",
+        "be.http.enableDNSLookups" : "false",
+        "be.http.tcpNoDelay" : "true",
+        "be.http.debugLogMaxDays" : "-1",
+        "be.http.debugLogRotatable" : "true",
+        "be.http.connectorType" : "NIO",
+        "be.http.socketBufferSize" : "9000",
+        "be.http.useBodyEncodingForURI" : "false"
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "PostEmpl" : {
+        "type" : "object",
+        "properties" : {
+          "Zip" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "CompanyName" : {
+            "type" : "string"
+          },
+          "Address" : {
+            "type" : "string"
+          },
+          "State" : {
+            "type" : "string"
+          },
+          "City" : {
+            "type" : "string"
+          },
+          "EmplID" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "EmployeeName" : {
+            "type" : "string"
+          }
+        }
+      },
+      "GetEmplInfo" : {
+        "type" : "object",
+        "properties" : {
+          "EmplID" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      }
+    },
+    "messages" : {
+      "PostEmpl" : {
+        "payload" : {
+          "$ref" : "#/components/schemas/PostEmpl"
+        }
+      },
+      "GetEmplInfo" : {
+        "payload" : {
+          "$ref" : "#/components/schemas/GetEmplInfo"
+        }
+      }
+    }
+  }
+}
